@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TODOMVC</title>
+    <link rel="stylesheet" href="css/todomvc.css" />
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+    <h1 class="h-title">todos</h1>
+    <h4 class="h-title">{{remaining()}} of {{items.length}} item left</h4>
+    <div class="input-group div-up">
+      <span class="input-group-addon">
+        <input type="checkbox" ng-model="inputItemsDone" ng-click="inputSelectAll()" />
+      </span>
+      <input type="text" class="form-control" placeholder="add new todo here" ng-model="inputTodo" ng-keydown="inputKeyDown($event)" autofocus />
+    </div>
+    <div class="div-middle">
+      <a href="#/all" class="btn btn-primary" ng-click="inputFlag('all')">All</a>
+      <a href="#/active" class="btn btn-danger" ng-click="inputFlag('active')">Active</a>
+      <a href="#/completed" class="btn btn-success" ng-click="inputFlag('completed')">Completed</a>
+      <button type="button" class="btn btn-link" ng-click="buttonClearCompleted()" ng-hide="buttonClearCompletedHide">Clear Completed</button>
+    </div>
+    <div class="div-down">
+      <ul>
+        <li class="li-item" ng-repeat="item in items track by $index" ng-if="item.done != flag">
+          <div class="input-group div-input">
+            <span class="input-group-addon">
+              <input type="checkbox" ng-model="item.done" ng-click="inputChangeItemDone($index)" />
+            </span>
+            <input type="text" class="form-control span-done-{{item.done}}" ng-model="item.text" ng-dblclick="inputEdit($index)" ng-hide="item.status" readonly />
+            <input type="text" class="form-control" ng-model="item.text" ng-blur="inputBlur($index)" ng-keydown="inputEditKeyDown($event, $index)" ng-show="item.status" />
+          </div>
+          <div class="div-X">
+            <input type="button" class="btn btn-warning" value="X" ng-click="inputRemoveItem($index)" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  <script src="js/todomvc.js"></script>
+</html>
