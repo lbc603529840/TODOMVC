@@ -52,7 +52,7 @@ app.controller("myCtrl", function($scope) {
                 return;
             }
 
-            $scope.items.push({text: $scope.inputTodo, done: false, status: false });
+            $scope.items.push({text: $scope.inputTodo, done: false, status: false});
             $scope.inputItemsDone = false;
             $scope.inputTodo = "";
         }
