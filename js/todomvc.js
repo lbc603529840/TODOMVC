@@ -112,8 +112,6 @@ app.controller("myCtrl", function($scope) {
     };
 
     $scope.buttonClearCompleted = function() {
-        var counter, _i, _ref;
-
         for (var counter = $scope.items.length - 1; counter >= 0; counter--) {
             if ($scope.items[counter].done == true) {
                 $scope.items.splice(counter, 1);
